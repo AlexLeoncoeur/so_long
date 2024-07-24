@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/16 18:40:05 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/04/16 19:07:36 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+int	ft_lstsize(t_list *lst)
+{
+	t_list	*aux;
+	int		i;
 
-#endif
+	aux = lst;
+	i = 0;
+	while (aux)
+	{
+		i++;
+		aux = aux->next;
+	}
+	return (i);
+}

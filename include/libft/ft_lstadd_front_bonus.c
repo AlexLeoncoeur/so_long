@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/16 18:15:18 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/06/26 13:26:49 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+}

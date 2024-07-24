@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/16 16:36:37 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/04/17 11:37:41 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*newlist;
 
-#endif
+	newlist = malloc(sizeof(t_list));
+	if (newlist == NULL)
+		return (NULL);
+	newlist->content = content;
+	newlist->next = NULL;
+	return (newlist);
+}

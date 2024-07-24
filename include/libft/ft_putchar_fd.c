@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/16 14:33:03 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/04/17 18:16:12 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+void	ft_putchar_fd(char c, int fd)
+{
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
+}
 
-#endif
+/* int	main(void)
+{
+	int	fd = open("pipo.txt", O_WRONLY);
+	ft_putchar_fd('p', fd);
+	return (0);
+} */

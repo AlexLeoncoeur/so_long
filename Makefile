@@ -1,22 +1,7 @@
-#---------- FLAGS & COMPILATION ----------#
-
-CC = clang
-NAME = so_long
-BONUS_NAME = 
-CFLAGS = -Wall -Werror -Wextra
-
-all: libft $(NAME)
-$(NAME): $(OFILES) $(ORDER_OFILES)
-	@ $(CC) $(CFLAGS) $(OFILES) include/minilibx-linux/libmlx_linux.a -o $(NAME)
-
-bonus: all $(BONUS_NAME)
-$(BONUS_NAME): $(BONUS_OFILES) $(BONUS_ORDER_OFILES)
-	@ $(CC) $(CFLAGS) $(BONUS_OFILES) $(BONUS_ORDER_OFILES) include/libft/libft.a -o $(BONUS_NAME)
-
 #---------- BASE ----------#
 
 # FILES 
-CFILES =  \
+CFILES =  so_long.c\
 
 ORDER_CFILES = 
 
@@ -61,11 +46,30 @@ $(BONUS_OBJ_DIR)order_cmd/%.o: $(BONUS_ORDER_SRC_DIR)%.c
 	@mkdir -p $(BONUS_OBJ_DIR)/order_cmd/
 	$(CC) $(CFLAGS) -c $< -o $@
 
+#---------- FLAGS & COMPILATION ----------#
+
+CC = clang
+NAME = so_long
+BONUS_NAME = 
+CFLAGS = -Wall -Werror -Wextra
+MLXFLAGS = include/MLX42/libmlx42.a -ldl -DEBUG=1 -Iinclude -lm -lglfw -L"usr/lib/x86_64-linux-gnu/"
+
+all: libft minilibx $(NAME)
+$(NAME): $(OFILES)
+	@ $(CC) $(CFLAGS) $(OFILES) $(MLXFLAGS) include/libft/libft.a -o $(NAME)
+
+bonus: all $(BONUS_NAME)
+$(BONUS_NAME): $(BONUS_OFILES) $(BONUS_ORDER_OFILES)
+	@ $(CC) $(CFLAGS) $(BONUS_OFILES) $(BONUS_ORDER_OFILES) include/libft/libft.a -o $(BONUS_NAME)
+
 
 #---------- LIBFT & CLEAN ----------#
 
 libft:
 	@ make -C  include/libft/ bonus
+
+minilibx:
+	@ make -C include/MLX42/
 
 clean:
 	@ rm -f $(OFILES) $(ORDER_OFILES) $(BONUS_OFILES) $(BONUS_ORDER_OFILES)

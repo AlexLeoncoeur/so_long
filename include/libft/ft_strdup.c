@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/12 10:32:25 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/04/15 12:31:08 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+char	*ft_strdup(const char *s1)
+{
+	char	*aux;
 
-#endif
+	aux = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (aux == NULL)
+		return (0);
+	aux = (char *)ft_memcpy(aux, s1, ft_strlen(s1) + 1);
+	return (aux);
+}
+/* #include <stdio.h>
+
+int	main(void)
+{
+	char	s1[] = "lorem ipsum dolor sit amet";
+	printf("%s", ft_strdup(s1));
+	return (0);
+} */

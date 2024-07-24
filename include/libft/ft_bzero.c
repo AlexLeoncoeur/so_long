@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/08 16:34:42 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/04/15 12:31:38 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+void	ft_bzero(void *s, size_t n)
+{
+	if (n != '0')
+	{
+		ft_memset(s, '\0', n);
+	}
+}
 
-#endif
+/* #include <stdio.h>
+
+int	main(void)
+{
+	char	str[30] = "pipo es un buen perro";
+
+	ft_bzero(str, 4);
+	printf("%s", str);
+	printf("hello world");
+	return (0);
+} */

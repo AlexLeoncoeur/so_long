@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:23:21 by aarenas-         ###   ########.fr       */
+/*   Created: 2024/04/08 14:41:43 by aarenas-          #+#    #+#             */
+/*   Updated: 2024/06/10 13:03:13 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "./MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+size_t	ft_strlen(const char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+/* #include <stdio.h>
+int	main(void)
+{
+	char str[] = "hola";
+	printf("%zu", ft_strlen(str));
+	return (0);
+} */
