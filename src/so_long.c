@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/24 16:53:33 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:12:41 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,32 @@ static void	ft_hook(void *param)
 
 int	main(void)
 {
-	int			color;
-	void		*identifier;
+	int			i;
+	int			j;
+	mlx_t		*identifier;
 	mlx_image_t	*img;
+	uint32_t	color;
 
-	identifier = mlx_init(1700, 1200, "so_long", true);
+	identifier = mlx_init(1920, 1080, "so_long", true);
 	if (!identifier)
 		ft_error();
-	color = get_rgba(140, 90, 190, 255);
-	ft_printf("%d", get_r(color));
-	ft_printf("%d", get_g(color));
-	ft_printf("%d", get_b(color));
-	img = mlx_new_image(identifier, 1700, 1200);
-	ft_memset(img->pixels, 140, img->width * img->height * sizeof(int32_t));
+	color = get_rgba(204, 140, 204, 1);
+	img = mlx_new_image(identifier, 1920, 1080);
+	uint32_t *pixels = (uint32_t *)img->pixels;
+	i = 0;
+	while (i < 1080)
+	{
+		j = 0;
+		while (j < 1920)
+		{
+			pixels[i * 1920 + j] = color;
+			j++;
+		}
+		i++;
+	}
 	mlx_image_to_window(identifier, img, 0, 0);
-	mlx_loop_hook(identifier, ft_hook, identifier);
+ 	mlx_loop_hook(identifier, ft_hook, identifier);
+	mlx_loop_hook(identifier, ft_controls_hook, identifier);
 	mlx_loop(identifier);
 	mlx_terminate(identifier);
 	return (EXIT_SUCCESS);

@@ -1,7 +1,7 @@
 #---------- BASE ----------#
 
 # FILES 
-CFILES =  so_long.c\
+CFILES =  so_long.c controls.c\
 
 ORDER_CFILES = 
 
