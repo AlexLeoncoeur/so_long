@@ -6,25 +6,28 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:45:27 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/25 17:13:02 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:14:31 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	ft_controls_hook(void *param, mlx_image_t *g_img)
+void	ft_controls_hook(mlx_key_data_t keydata, void *param)
 {
-	mlx_t	*mlx;
+	t_game_state	*state;
 
-	mlx = param;
+	state = (t_game_state *)param;
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 		mlx_close_window(param);
-	if (mlx_is_key_down(param, MLX_KEY_W))
-		g_img->instances[0].y -= 5;
-	if (mlx_is_key_down(param, MLX_KEY_S))
-		g_img->instances[0].y += 5;
-	if (mlx_is_key_down(param, MLX_KEY_A))
-		g_img->instances[0].x -= 5;
-	if (mlx_is_key_down(param, MLX_KEY_D))
-		g_img->instances[0].x += 5;
+	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	{
+		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+			state->pos_y -= 10;
+		if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+			state->pos_y += 10;
+		if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+			state->pos_x -= 10;
+		if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+			state->pos_x += 10;
+	}
 }
