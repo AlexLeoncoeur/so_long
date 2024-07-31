@@ -1,7 +1,7 @@
 #---------- BASE ----------#
 
 # FILES 
-CFILES =  so_long.c controls.c\
+CFILES =  so_long.c controls.c error.c map.c\
 
 ORDER_CFILES = 
 
@@ -51,7 +51,7 @@ $(BONUS_OBJ_DIR)order_cmd/%.o: $(BONUS_ORDER_SRC_DIR)%.c
 CC = clang
 NAME = so_long
 BONUS_NAME = 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 MLXFLAGS = include/MLX42/libmlx42.a -ldl -DEBUG=1 -Iinclude -lm -lglfw -L"usr/lib/x86_64-linux-gnu/"
 
 all: libft minilibx $(NAME)
