@@ -6,11 +6,13 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:45:27 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/31 17:27:43 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:02:54 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	ft_move_up(t_game_core *game)
 
 void	ft_controls_hook(mlx_key_data_t keydata, void *param)
 {
