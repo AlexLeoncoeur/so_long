@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/01 17:41:46 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:56:41 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_read_map(t_game_core *game, char *map)
 		line = get_next_line(fd);
 		game->map_row++;
 	}
-	game->map = ft_split(full_map, "\n");
+	game->map = ft_split(full_map, '\n');
 }
 
 void	ft_check_map(t_game_core *game, char c)
@@ -36,6 +36,7 @@ void	ft_check_map(t_game_core *game, char c)
 	int	j;
 
 	i = 0;
+	j = 0;
 	while (game->map[i][j])
 	{
 		j = 0;
@@ -52,12 +53,15 @@ void	ft_check_map(t_game_core *game, char c)
 	}
 }
 
-void	ft_render_map(t_game_core *game)
+void	ft_render_map(void *param)
 {
-	int	i;
-	int	j;
+	t_game_core	*game;
+	int			i;
+	int			j;
 
+	game = (t_game_core *)param;
 	i = 0;
+	j = 0;
 	while (game->map[i][j])
 	{
 		j = 0;

@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/01 17:48:05 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:50:02 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ typedef struct s_game_core
 }	t_game_core;
 
 /*-------------------- so_long --------------------*/
-t_game_state	*ft_prepare_character(mlx_t *id, mlx_image_t *ig, int x, int y);
 t_game_core		*ft_prepare_game_core(mlx_t *id, char *map);
 void			ft_load_img(t_game_core *game);
 
 /*-------------------- map --------------------*/
 void			ft_read_map(t_game_core *game, char *map);
 void			ft_check_map(t_game_core *game, char c);
-void			ft_render_map(t_game_core *game);
+void			ft_render_map(void *param);
 
 /*-------------------- textures --------------------*/
 void			ft_load_img(t_game_core *game);
@@ -57,6 +56,6 @@ void			ft_load_img(t_game_core *game);
 void			ft_controls_hook(mlx_key_data_t keydata, void *param);
 
 /*-------------------- Error --------------------*/
-void			ft_puterrorstr(char *str);
+void			ft_puterrorstr(char *str, t_game_core *game);
 
 #endif

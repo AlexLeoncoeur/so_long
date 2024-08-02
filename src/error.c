@@ -6,13 +6,40 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:48 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/07/31 13:56:03 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:55:28 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	ft_puterrorstr(char *str)
+static void	ft_free(char **str)
+{
+	char	**ptr;
+
+	if (!str)
+		return ;
+	ptr = str;
+	while (*ptr)
+	{
+		free(*ptr);
+		ptr++;
+	}
+	free(str);
+}
+
+static void	ft_exit(t_game_core *game)
+{
+	ft_free(game->map);
+	free(game->pc_img);
+	free(game->wall_img);
+	free(game->floor_img);
+	free(game->resource_img);
+	mlx_terminate(game->id);
+	free(game);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_puterrorstr(char *str, t_game_core *game)
 {
 	int	i;
 
@@ -22,5 +49,7 @@ void	ft_puterrorstr(char *str)
 		write(2, &str[i], 1);
 		i++;
 	}
-	exit(1);
+	if (game)
+		ft_exit(game);
+	exit(EXIT_FAILURE);
 }
