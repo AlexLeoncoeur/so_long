@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/02 12:56:41 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/02 20:11:34 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	ft_check_map(t_game_core *game, char c)
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (game->map[i][j])
+	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
@@ -46,11 +45,13 @@ void	ft_check_map(t_game_core *game, char c)
 			{
 				game->pc_y = i;
 				game->pc_x = j;
+				return ;
 			}
 			j++;
 		}
 		i++;
 	}
+	ft_puterrorstr("Error: Could not find player\n", game);
 }
 
 void	ft_render_map(void *param)
@@ -61,21 +62,33 @@ void	ft_render_map(void *param)
 
 	game = (t_game_core *)param;
 	i = 0;
-	j = 0;
-	while (game->map[i][j])
+	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
-			mlx_image_to_window(game->id, game->floor_img, j, i);
+			mlx_image_to_window(game->id, game->floor_img, j * 32, i * 32);
 			if (game->map[i][j] == 'P')
-				mlx_image_to_window(game->id, game->pc_img, j, i);
+				mlx_image_to_window(game->id, game->pc_img, j * 32, i * 32);
 			if (game->map[i][j] == 'W')
-				mlx_image_to_window(game->id, game->wall_img, j, i);
+				mlx_image_to_window(game->id, game->wall_img, j * 32, i * 32);
 			if (game->map[i][j] == 'R')
-				mlx_image_to_window(game->id, game->resource_img, j, i);
+				mlx_image_to_window(game->id, game->resource_img, j * 32, i * 32);
 			j++;
 		}
 		i++;
 	}
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			printf("%c", game->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("pcy: %d pcx: %d\n", game->pc_y, game->pc_x);
 }

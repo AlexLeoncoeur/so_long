@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:45:27 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/02 12:53:16 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/02 20:12:58 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	ft_move_up(t_game_core *game)
 	char	swap;
 
 	swap = game->map[game->pc_y][game->pc_x];
-	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y + 1][game->pc_x];
-	game->map[game->pc_y + 1][game->pc_x] = swap;
-	game->pc_y++;
+	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y - 1][game->pc_x];
+	game->map[game->pc_y - 1][game->pc_x] = swap;
+	game->pc_y--;
 }
 
 static void	ft_move_down(t_game_core *game)
@@ -27,9 +27,9 @@ static void	ft_move_down(t_game_core *game)
 	char	swap;
 
 	swap = game->map[game->pc_y][game->pc_x];
-	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y - 1][game->pc_x];
+	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y + 1][game->pc_x];
 	game->map[game->pc_y + 1][game->pc_x] = swap;
-	game->pc_y--;
+	game->pc_y++;
 }
 
 static void	ft_move_left(t_game_core *game)

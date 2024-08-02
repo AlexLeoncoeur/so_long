@@ -79,5 +79,6 @@ clean:
 fclean: clean
 	@ rm -f $(NAME) $(BONUS_NAME)
 	@ make -C include/libft/ fclean
+	@ make -C include/MLX42/ fclean
 
 re: fclean all
