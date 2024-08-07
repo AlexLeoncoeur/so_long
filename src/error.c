@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:48 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/07 13:29:53 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:55:00 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 static void	ft_free(char **str)
 {
 	char	**ptr;
+	int		i;
 
+	i = 0;
 	if (!str)
 		return ;
 	ptr = str;
-	while (*ptr)
+	while (ptr[i])
 	{
-		free(*ptr);
-		ptr++;
+		free(ptr[i]);
+		i++;
 	}
 	free(str);
 }

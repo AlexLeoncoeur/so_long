@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/07 13:39:07 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:44:54 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ void	ft_read_map(t_game_core *game, char *map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		full_map = ft_strjoin(full_map, line);
+		full_map = ft_strjoin_free(full_map, line);
 		free(line);
 		line = get_next_line(fd);
 		game->map_row++;
 	}
 	game->map = ft_split(full_map, '\n');
+	free(full_map);
 	if (!game->map)
 		ft_puterrorstr("Error: Could not load map\n", game);
-	free(full_map);
-	free(line);
 	close(fd);
 }
 

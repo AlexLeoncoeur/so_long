@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/07 13:20:12 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:53:40 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(id, &ft_render_map, game);
 	mlx_key_hook(id, &ft_controls_hook, game);
 	mlx_loop(id);
-	mlx_terminate(id);
+	ft_exit(game);
 	return (EXIT_SUCCESS);
 }
