@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:45:27 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/02 20:12:58 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:27:23 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,58 @@ static void	ft_move_up(t_game_core *game)
 {
 	char	swap;
 
+	if (game->map[game->pc_y - 1][game->pc_x] == '#')
+		return ;
 	swap = game->map[game->pc_y][game->pc_x];
 	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y - 1][game->pc_x];
 	game->map[game->pc_y - 1][game->pc_x] = swap;
 	game->pc_y--;
+	game->pc_moves++;
+	ft_print_moves(game);
 }
 
 static void	ft_move_down(t_game_core *game)
 {
 	char	swap;
 
+	if (game->map[game->pc_y + 1][game->pc_x] == '#')
+		return ;
 	swap = game->map[game->pc_y][game->pc_x];
 	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y + 1][game->pc_x];
 	game->map[game->pc_y + 1][game->pc_x] = swap;
 	game->pc_y++;
+	game->pc_moves++;
+	ft_print_moves(game);
 }
 
 static void	ft_move_left(t_game_core *game)
 {
 	char	swap;
+	int		max;
 
+	max = ft_strlen(game->map[game->pc_y]);
+	if (game->map[game->pc_y][game->pc_x - 1] == '#')
+		return ;
 	swap = game->map[game->pc_y][game->pc_x];
 	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y][game->pc_x - 1];
 	game->map[game->pc_y][game->pc_x - 1] = swap;
 	game->pc_x--;
+	game->pc_moves++;
+	ft_print_moves(game);
 }
 
 static void	ft_move_right(t_game_core *game)
 {
 	char	swap;
 
+	if (game->map[game->pc_y][game->pc_x + 1] == '#')
+		return ;
 	swap = game->map[game->pc_y][game->pc_x];
 	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y][game->pc_x + 1];
 	game->map[game->pc_y][game->pc_x + 1] = swap;
 	game->pc_x++;
+	game->pc_moves++;
+	ft_print_moves(game);
 }
 
 void	ft_controls_hook(mlx_key_data_t keydata, void *param)
@@ -60,7 +78,10 @@ void	ft_controls_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE)
+		{
+			ft_exit(game);
 			mlx_close_window(game->id);
+		}
 		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 			ft_move_up(game);
 		if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)

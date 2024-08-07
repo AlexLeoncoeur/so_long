@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:48 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/02 12:55:28 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:29:53 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ static void	ft_free(char **str)
 	free(str);
 }
 
-static void	ft_exit(t_game_core *game)
+void	ft_exit(t_game_core *game)
 {
-	ft_free(game->map);
-	free(game->pc_img);
-	free(game->wall_img);
-	free(game->floor_img);
-	free(game->resource_img);
 	mlx_terminate(game->id);
+	ft_free(game->map);
 	free(game);
 	exit(EXIT_FAILURE);
 }

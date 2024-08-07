@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:59:28 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/02 12:37:05 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:35:58 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,8 @@ void	ft_load_img(t_game_core *game)
 	if (!game->pc_img || !game->wall_img || !game->floor_img
 		|| !game->resource_img)
 		ft_puterrorstr("Error: No se pudo cargar la imagen\n", game);
+	free(pc);
+	free(wall);
+	free(floor);
+	free(resource);
 }
