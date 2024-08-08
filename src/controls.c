@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:45:27 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/07 13:27:23 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:53:58 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,16 @@ static void	ft_move_up(t_game_core *game)
 	if (game->map[game->pc_y - 1][game->pc_x] == '#')
 		return ;
 	swap = game->map[game->pc_y][game->pc_x];
-	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y - 1][game->pc_x];
+	if (game->map[game->pc_y - 1][game->pc_x] == 'R')
+	{
+		game->map[game->pc_y][game->pc_x] = '.';
+		game->vp--;
+	}
+	else
+	{
+		game->map[game->pc_y][game->pc_x]
+			= game->map[game->pc_y - 1][game->pc_x];
+	}
 	game->map[game->pc_y - 1][game->pc_x] = swap;
 	game->pc_y--;
 	game->pc_moves++;
@@ -33,7 +42,16 @@ static void	ft_move_down(t_game_core *game)
 	if (game->map[game->pc_y + 1][game->pc_x] == '#')
 		return ;
 	swap = game->map[game->pc_y][game->pc_x];
-	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y + 1][game->pc_x];
+		if (game->map[game->pc_y + 1][game->pc_x] == 'R')
+	{
+		game->map[game->pc_y][game->pc_x] = '.';
+		game->vp--;
+	}
+	else
+	{
+		game->map[game->pc_y][game->pc_x]
+			= game->map[game->pc_y + 1][game->pc_x];
+	}
 	game->map[game->pc_y + 1][game->pc_x] = swap;
 	game->pc_y++;
 	game->pc_moves++;
@@ -49,7 +67,16 @@ static void	ft_move_left(t_game_core *game)
 	if (game->map[game->pc_y][game->pc_x - 1] == '#')
 		return ;
 	swap = game->map[game->pc_y][game->pc_x];
-	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y][game->pc_x - 1];
+	if (game->map[game->pc_y][game->pc_x - 1] == 'R')
+	{
+		game->map[game->pc_y][game->pc_x] = '.';
+		game->vp--;
+	}
+	else
+	{
+		game->map[game->pc_y][game->pc_x]
+			= game->map[game->pc_y][game->pc_x - 1];
+	}
 	game->map[game->pc_y][game->pc_x - 1] = swap;
 	game->pc_x--;
 	game->pc_moves++;
@@ -63,7 +90,16 @@ static void	ft_move_right(t_game_core *game)
 	if (game->map[game->pc_y][game->pc_x + 1] == '#')
 		return ;
 	swap = game->map[game->pc_y][game->pc_x];
-	game->map[game->pc_y][game->pc_x] = game->map[game->pc_y][game->pc_x + 1];
+	if (game->map[game->pc_y][game->pc_x + 1] == 'R')
+	{
+		game->map[game->pc_y][game->pc_x] = '.';
+		game->vp--;
+	}
+	else
+	{
+		game->map[game->pc_y][game->pc_x]
+			= game->map[game->pc_y][game->pc_x + 1];
+	}
 	game->map[game->pc_y][game->pc_x + 1] = swap;
 	game->pc_x++;
 	game->pc_moves++;
@@ -91,4 +127,6 @@ void	ft_controls_hook(mlx_key_data_t keydata, void *param)
 		if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 			ft_move_right(game);
 	}
+	if (game->vp == 0)
+		ft_win_game(game);
 }

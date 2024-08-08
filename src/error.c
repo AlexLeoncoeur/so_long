@@ -6,13 +6,13 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:48 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/07 15:55:00 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:48:48 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	ft_free(char **str)
+void	ft_free(char **str)
 {
 	char	**ptr;
 	int		i;

@@ -6,11 +6,37 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/07 15:53:40 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:01:31 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+static void	ft_game_size(t_game_core *g)
+{
+	float			scale_x;
+	float			scale_y;
+
+	g->map_w = ft_strlen(g->map[0]);
+	g->map_h = g->map_row;
+	scale_x = (float)g->id->width / (g->map_w * 32);
+	scale_y = (float)g->id->height / (g->map_h * 32);
+	if (scale_x < scale_y)
+		g->scale = scale_x;
+	else
+		g->scale = scale_y;
+	g->offset_x = (g->id->width - (g->map_w * 32 * g->scale)) / 2;
+	g->offset_y = (g->id->height - (g->map_h * 32 * g->scale)) / 2;
+}
+
+void	ft_win_game(t_game_core *game)
+{
+	ft_printf("You won!\nYour total moves were: %d\n", game->pc_moves);
+	mlx_terminate(game->id);
+	ft_free(game->map);
+	free(game);
+	exit(EXIT_SUCCESS);
+}
 
 void	ft_print_moves(t_game_core *game)
 {
@@ -28,7 +54,10 @@ t_game_core	*ft_prepare_game_core(mlx_t *id, char *map)
 	game->map_row = 0;
 	ft_read_map(game, map);
 	ft_check_map(game, 'P');
+	game->vp = 0;
+	ft_check_vp(game);
 	ft_load_img(game);
+	ft_game_size(game);
 	game->pc_moves = 0;
 	return (game);
 }
