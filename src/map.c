@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/08 17:07:41 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:53:31 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,15 @@ void	ft_render_map(void *param)
 		j = -1;
 		while (game->map[i][++j])
 		{
-			x = j * 32 * game->scale + game->offset_x;
-			y = i * 32 * game->scale + game->offset_y;
+			x = j * (32 * game->scale + game->offset_x);
+			y = i * (32 * game->scale + game->offset_y);
 			mlx_image_to_window(game->id, game->floor_img, x, y);
 			if (game->map[i][j] == 'P')
 				mlx_image_to_window(game->id, game->pc_img, x, y);
-			if (game->map[i][j] == 'W')
-				mlx_image_to_window(game->id, game->wall_img, x, y);
 			if (game->map[i][j] == 'R')
 				mlx_image_to_window(game->id, game->rsc_img, x, y);
+			if (game->map[i][j] == '#')
+				mlx_image_to_window(game->id, game->wall_img, x, y);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:59:28 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/08 12:34:17 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:46:40 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_load_img(t_game_core *game)
 	mlx_texture_t	*resource;
 
 	pc = mlx_load_png("/home/aarenas-/Desktop/so_long/img/player_x1.png");
-	wall = mlx_load_png("/home/aarenas-/Desktop/so_long/img/player_x1.png");
-	floor = mlx_load_png("/home/aarenas-/Desktop/so_long/img/player_x1.png");
+	wall = mlx_load_png("/home/aarenas-/Desktop/so_long/img/wall.png");
+	floor = mlx_load_png("/home/aarenas-/Desktop/so_long/img/floor.png");
 	resource = mlx_load_png("/home/aarenas-/Desktop/so_long/img/player_x1.png");
 	if (!pc || !wall || !floor || !resource)
 		ft_puterrorstr("Error: No se pudo cargar la textura\n", game);
