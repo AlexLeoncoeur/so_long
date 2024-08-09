@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/08 18:16:54 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:03:33 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	mlx_t			*id;
 	t_game_core		*game;
 
-	if (argc != 2)
+	if (argc != 2 || ft_check_argv(argv[1]) == 1)
 		ft_puterrorstr("Error: .ber file needed\n", NULL);
 	game = (t_game_core *)malloc(sizeof(t_game_core));
 	if (game == NULL)
@@ -71,7 +71,8 @@ int	main(int argc, char **argv)
 	if (!id)
 		ft_puterrorstr("Error: could not initializate identifier\n", NULL);
 	ft_prepare_game_core(id, game);
-	mlx_loop_hook(id, &ft_render_map, game);
+	ft_render_map(game);
+	mlx_resize_hook(id, ft_resize, NULL);
 	mlx_key_hook(id, &ft_controls_hook, game);
 	mlx_loop(id);
 	ft_exit(game);

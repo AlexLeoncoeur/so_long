@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/08 18:11:22 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/09 15:59:19 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 # include "./libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
-
-typedef struct s_game_state
-{
-	mlx_t			*id;
-	mlx_image_t		*image;
-	int				pos_x;
-	int				pos_y;
-}	t_game_state;
 
 /*vp = victory points needed to win*/
 typedef struct s_game_core
@@ -54,6 +46,7 @@ void			ft_load_img(t_game_core *game);
 void			ft_win_game(t_game_core *game);
 
 /*-------------------- map --------------------*/
+void			ft_resize(int width, int height, void *param);
 void			ft_read_map(t_game_core *game, char *map);
 void			ft_check_map(t_game_core *game, char c);
 void			ft_check_vp(t_game_core *game);

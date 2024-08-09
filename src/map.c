@@ -6,11 +6,19 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/08 18:53:31 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:01:04 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	ft_resize(int width, int height, void *param)
+{
+	(void)param;
+	(void)width;
+	(void)height;
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+}
 
 void	ft_read_map(t_game_core *game, char *map)
 {
@@ -69,7 +77,7 @@ void	ft_check_vp(t_game_core *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == 'R')
+			if (game->map[i][j] == 'C')
 			{
 				game->vp++;
 			}
@@ -101,9 +109,9 @@ void	ft_render_map(void *param)
 			mlx_image_to_window(game->id, game->floor_img, x, y);
 			if (game->map[i][j] == 'P')
 				mlx_image_to_window(game->id, game->pc_img, x, y);
-			if (game->map[i][j] == 'R')
+			if (game->map[i][j] == 'C')
 				mlx_image_to_window(game->id, game->rsc_img, x, y);
-			if (game->map[i][j] == '#')
+			if (game->map[i][j] == '1')
 				mlx_image_to_window(game->id, game->wall_img, x, y);
 		}
 	}

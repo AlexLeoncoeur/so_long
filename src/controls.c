@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 16:45:27 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/08 12:53:58 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:00:36 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 static void	ft_move_up(t_game_core *game)
 {
-	char	swap;
+	int	x;
+	int	y;
+	
+	x = game->pc_x * (32 * game->scale + game->offset_x);
+	y = game->pc_y * (32 * game->scale + game->offset_y);
 
-	if (game->map[game->pc_y - 1][game->pc_x] == '#')
+	if (game->map[game->pc_y - 1][game->pc_x] == '1')
 		return ;
-	swap = game->map[game->pc_y][game->pc_x];
-	if (game->map[game->pc_y - 1][game->pc_x] == 'R')
-	{
-		game->map[game->pc_y][game->pc_x] = '.';
+	if (game->map[game->pc_y - 1][game->pc_x] == 'C')
 		game->vp--;
-	}
+	if (game->map[game->pc_y][game->pc_x + 1] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x, y - 1);
 	else
-	{
-		game->map[game->pc_y][game->pc_x]
-			= game->map[game->pc_y - 1][game->pc_x];
-	}
-	game->map[game->pc_y - 1][game->pc_x] = swap;
+		mlx_image_to_window(game->id, game->floor_img, x, y - 1);
+	if (game->map[game->pc_y][game->pc_x] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x, y - 1);
+	else
+		mlx_image_to_window(game->id, game->floor_img, x, y);
+	mlx_image_to_window(game->id, game->pc_img, x, y - 1);
 	game->pc_y--;
 	game->pc_moves++;
 	ft_print_moves(game);
@@ -37,22 +40,25 @@ static void	ft_move_up(t_game_core *game)
 
 static void	ft_move_down(t_game_core *game)
 {
-	char	swap;
+	int	x;
+	int	y;
+	
+	x = game->pc_x * (32 * game->scale + game->offset_x);
+	y = game->pc_y * (32 * game->scale + game->offset_y);
 
-	if (game->map[game->pc_y + 1][game->pc_x] == '#')
+	if (game->map[game->pc_y + 1][game->pc_x] == '1')
 		return ;
-	swap = game->map[game->pc_y][game->pc_x];
-		if (game->map[game->pc_y + 1][game->pc_x] == 'R')
-	{
-		game->map[game->pc_y][game->pc_x] = '.';
+	if (game->map[game->pc_y + 1][game->pc_x] == 'C')
 		game->vp--;
-	}
+	if (game->map[game->pc_y][game->pc_x + 1] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x, y + 1);
 	else
-	{
-		game->map[game->pc_y][game->pc_x]
-			= game->map[game->pc_y + 1][game->pc_x];
-	}
-	game->map[game->pc_y + 1][game->pc_x] = swap;
+		mlx_image_to_window(game->id, game->floor_img, x, y + 1);
+	if (game->map[game->pc_y][game->pc_x] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x, y + 1);
+	else
+		mlx_image_to_window(game->id, game->floor_img, x, y);
+	mlx_image_to_window(game->id, game->pc_img, x, y + 1);
 	game->pc_y++;
 	game->pc_moves++;
 	ft_print_moves(game);
@@ -60,24 +66,25 @@ static void	ft_move_down(t_game_core *game)
 
 static void	ft_move_left(t_game_core *game)
 {
-	char	swap;
-	int		max;
+	int	x;
+	int	y;
+	
+	x = game->pc_x * (32 * game->scale + game->offset_x);
+	y = game->pc_y * (32 * game->scale + game->offset_y);
 
-	max = ft_strlen(game->map[game->pc_y]);
-	if (game->map[game->pc_y][game->pc_x - 1] == '#')
+	if (game->map[game->pc_y][game->pc_x - 1] == '1')
 		return ;
-	swap = game->map[game->pc_y][game->pc_x];
-	if (game->map[game->pc_y][game->pc_x - 1] == 'R')
-	{
-		game->map[game->pc_y][game->pc_x] = '.';
+	if (game->map[game->pc_y][game->pc_x - 1] == 'C')
 		game->vp--;
-	}
+	if (game->map[game->pc_y][game->pc_x + 1] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x - 1, y);
 	else
-	{
-		game->map[game->pc_y][game->pc_x]
-			= game->map[game->pc_y][game->pc_x - 1];
-	}
-	game->map[game->pc_y][game->pc_x - 1] = swap;
+		mlx_image_to_window(game->id, game->floor_img, x - 1, y);
+	if (game->map[game->pc_y][game->pc_x] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x, y);
+	else
+		mlx_image_to_window(game->id, game->floor_img, x, y);
+	mlx_image_to_window(game->id, game->pc_img, x - 1, y);
 	game->pc_x--;
 	game->pc_moves++;
 	ft_print_moves(game);
@@ -85,22 +92,25 @@ static void	ft_move_left(t_game_core *game)
 
 static void	ft_move_right(t_game_core *game)
 {
-	char	swap;
+	int	x;
+	int	y;
+	
+	x = game->pc_x * (32 * game->scale + game->offset_x);
+	y = game->pc_y * (32 * game->scale + game->offset_y);
 
-	if (game->map[game->pc_y][game->pc_x + 1] == '#')
+	if (game->map[game->pc_y][game->pc_x + 1] == '1')
 		return ;
-	swap = game->map[game->pc_y][game->pc_x];
-	if (game->map[game->pc_y][game->pc_x + 1] == 'R')
-	{
-		game->map[game->pc_y][game->pc_x] = '.';
+	if (game->map[game->pc_y][game->pc_x + 1] == 'C')
 		game->vp--;
-	}
+	if (game->map[game->pc_y][game->pc_x + 1] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x + 1, y);
 	else
-	{
-		game->map[game->pc_y][game->pc_x]
-			= game->map[game->pc_y][game->pc_x + 1];
-	}
-	game->map[game->pc_y][game->pc_x + 1] = swap;
+		mlx_image_to_window(game->id, game->floor_img, x + 1, y);
+	if (game->map[game->pc_y][game->pc_x] == 'E')
+		mlx_image_to_window(game->id, game->exit_img, x, y);
+	else
+		mlx_image_to_window(game->id, game->floor_img, x, y);
+	mlx_image_to_window(game->id, game->pc_img, x + 1, y);
 	game->pc_x++;
 	game->pc_moves++;
 	ft_print_moves(game);
