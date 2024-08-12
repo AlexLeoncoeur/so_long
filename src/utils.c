@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:49:17 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/12 16:53:44 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:05:11 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ft_check_map_component(t_game_core *game)
 
 static int	ft_flood_fill(int i, int j, t_game_core *game)
 {
-	game->c = 0;
 	if (game->map_cpy[i][j] == '1' || game->map_cpy[i][j] == 'F')
 		return (EXIT_FAILURE);
 	else if (game->map_cpy[i][j] == 'C')
@@ -78,7 +77,6 @@ static int	ft_flood_fill(int i, int j, t_game_core *game)
 	ft_flood_fill(i, j - 1, game);
 	ft_flood_fill(i + 1, j, game);
 	ft_flood_fill(i - 1, j, game);
-	printf("%d\n %d\n", game->c, game->vp);
 	if (game->c == game->vp)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);

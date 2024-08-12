@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/12 16:54:13 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:06:07 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_win_game(t_game_core *game)
 	ft_printf("You won!\nYour total moves were: %d\n", game->pc_moves);
 	mlx_terminate(game->id);
 	ft_free(game->map);
+	ft_free(game->map_cpy);
 	free(game);
 	exit(EXIT_SUCCESS);
 }
@@ -52,8 +53,8 @@ void	ft_prepare_game_core(mlx_t *id, t_game_core *game)
 	ft_check_map_component(game);
 	ft_check_map(game, 'P');
 	ft_check_walls(game);
-	ft_flood_prep(game);
 	ft_check_vp(game);
+	ft_flood_prep(game);
 	ft_load_img(game);
 	ft_game_size(game);
 	game->pc_moves = 0;
