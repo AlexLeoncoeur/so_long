@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/09 17:03:33 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:54:13 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,13 @@ void	ft_print_moves(t_game_core *game)
 void	ft_prepare_game_core(mlx_t *id, t_game_core *game)
 {
 	game->id = id;
-	ft_check_map(game, 'P');
+	game->c = 0;
 	game->vp = 0;
+	ft_check_map_error(game);
+	ft_check_map_component(game);
+	ft_check_map(game, 'P');
+	ft_check_walls(game);
+	ft_flood_prep(game);
 	ft_check_vp(game);
 	ft_load_img(game);
 	ft_game_size(game);
@@ -57,24 +62,23 @@ void	ft_prepare_game_core(mlx_t *id, t_game_core *game)
 int	main(int argc, char **argv)
 {
 	mlx_t			*id;
-	t_game_core		*game;
+	t_game_core		*g;
 
 	if (argc != 2 || ft_check_argv(argv[1]) == 1)
 		ft_puterrorstr("Error: .ber file needed\n", NULL);
-	game = (t_game_core *)malloc(sizeof(t_game_core));
-	if (game == NULL)
+	g = (t_game_core *)malloc(sizeof(t_game_core));
+	if (g == NULL)
 		ft_puterrorstr("Error: Could not allocate memory for game\n", NULL);
-	game->map_row = 0;
-	ft_read_map(game, argv[1]);
-	printf("x = %zu\ny = %d\n", ft_strlen(game->map[0]), game->map_row);
-	id = mlx_init(ft_strlen(game->map[0]) * 64, game->map_row * 64, "so_long", true);
+	g->map_row = 0;
+	ft_read_map(g, argv[1]);
+	id = mlx_init(ft_strlen(g->map[0]) * 64, g->map_row * 64, "so_long", true);
 	if (!id)
 		ft_puterrorstr("Error: could not initializate identifier\n", NULL);
-	ft_prepare_game_core(id, game);
-	ft_render_map(game);
+	ft_prepare_game_core(id, g);
+	ft_render_map(g);
 	mlx_resize_hook(id, ft_resize, NULL);
-	mlx_key_hook(id, &ft_controls_hook, game);
+	mlx_key_hook(id, &ft_controls_hook, g);
 	mlx_loop(id);
-	ft_exit(game);
+	ft_exit(g);
 	return (EXIT_SUCCESS);
 }

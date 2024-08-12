@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/09 15:59:19 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:38:25 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_game_core
 {
 	mlx_t		*id;
 	char		**map;
+	char		**map_cpy;
+	int			c;
 	int			vp;
 	int			pc_y;
 	int			pc_x;
@@ -37,6 +39,7 @@ typedef struct s_game_core
 	mlx_image_t	*wall_img;
 	mlx_image_t	*floor_img;
 	mlx_image_t	*rsc_img;
+	mlx_image_t	*exit_img;
 }	t_game_core;
 
 /*-------------------- so_long --------------------*/
@@ -50,7 +53,7 @@ void			ft_resize(int width, int height, void *param);
 void			ft_read_map(t_game_core *game, char *map);
 void			ft_check_map(t_game_core *game, char c);
 void			ft_check_vp(t_game_core *game);
-void			ft_render_map(void *param);
+void			ft_render_map(t_game_core *game);
 
 /*-------------------- textures --------------------*/
 void			ft_load_img(t_game_core *game);
@@ -60,7 +63,14 @@ void			ft_controls_hook(mlx_key_data_t keydata, void *param);
 
 /*-------------------- Error --------------------*/
 void			ft_puterrorstr(char *str, t_game_core *game);
+void			ft_check_walls(t_game_core *game);
 void			ft_exit(t_game_core *game);
 void			ft_free(char **str);
+int				ft_check_argv(char *argv);
+
+/*-------------------- Utils --------------------*/
+void			ft_check_map_component(t_game_core *game);
+void			ft_check_map_error(t_game_core *game);
+void			ft_flood_prep(t_game_core *game);
 
 #endif

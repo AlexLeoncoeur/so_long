@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/09 17:01:04 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:31:15 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_read_map(t_game_core *game, char *map)
 		game->map_row++;
 	}
 	game->map = ft_split(full_map, '\n');
+	game->map_cpy = ft_split(full_map, '\n');
 	free(full_map);
 	if (!game->map)
 		ft_puterrorstr("Error: Could not load map\n", game);
@@ -89,15 +90,13 @@ void	ft_check_vp(t_game_core *game)
 		ft_puterrorstr("Error: No resources in map\n", game);
 }
 
-void	ft_render_map(void *param)
+void	ft_render_map(t_game_core *game)
 {
-	t_game_core	*game;
 	int			i;
 	int			j;
 	int			x;
 	int			y;
 
-	game = (t_game_core *)param;
 	i = -1;
 	while (game->map[++i])
 	{
@@ -111,6 +110,8 @@ void	ft_render_map(void *param)
 				mlx_image_to_window(game->id, game->pc_img, x, y);
 			if (game->map[i][j] == 'C')
 				mlx_image_to_window(game->id, game->rsc_img, x, y);
+			if (game->map[i][j] == 'E')
+				mlx_image_to_window(game->id, game->exit_img, x, y);
 			if (game->map[i][j] == '1')
 				mlx_image_to_window(game->id, game->wall_img, x, y);
 		}
