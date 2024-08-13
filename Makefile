@@ -1,7 +1,7 @@
 #---------- BASE ----------#
 
 # FILES 
-CFILES =  so_long.c controls.c error.c map.c textures.c utils.c\
+CFILES =  so_long.c controls.c error.c map.c textures.c utils.c miscelaneous.c\
 
 ORDER_CFILES = 
 

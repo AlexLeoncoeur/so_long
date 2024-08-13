@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:57:03 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/13 12:24:43 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:14:47 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	main(int argc, char **argv)
 	g = (t_game_core *)malloc(sizeof(t_game_core));
 	if (g == NULL)
 		ft_puterrorstr("Error: Could not allocate memory for game\n", NULL);
-	g->id = 0;
-	g->map_row = 0;
+	ft_set_game_core(g);
 	ft_read_map(g, argv[1]);
 	ft_prepare_game_core(g);
 	id = mlx_init(ft_strlen(g->map[0]) * 64, g->map_row * 64, "so_long", true);

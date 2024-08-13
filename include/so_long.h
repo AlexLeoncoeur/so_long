@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/13 12:25:37 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:41:52 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_game_core
 	int			pc_x;
 	int			pc_moves;
 	int			map_row;
+	size_t		map_column;
 	int			map_w;
 	int			map_h;
 	float		scale;
@@ -73,5 +74,10 @@ int				ft_check_argv(char *argv);
 void			ft_check_map_component(t_game_core *game);
 void			ft_check_map_error(t_game_core *game);
 void			ft_flood_prep(t_game_core *game);
+
+/*-------------------- Miscelaneous --------------------*/
+void			ft_free_read_map(char *line, char *full_map, t_game_core *game);
+void			ft_set_game_core(t_game_core *g);
+size_t			ft_len_line(char *str);
 
 #endif
