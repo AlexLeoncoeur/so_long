@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:48 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/12 16:37:46 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:04:09 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	ft_check_argv(char *argv)
 	int	size;
 
 	size = ft_strlen(argv);
-	if (argv[size - 3] != '.' || argv[size - 2] != 'b' || argv[size - 1] != 'e'
-		|| argv[size] != 'r')
+	if (argv[size - 4] == '.' && argv[size - 3] == 'b' && argv[size - 2] == 'e'
+		&& argv[size - 1] == 'r')
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
@@ -71,9 +71,12 @@ void	ft_free(char **str)
 
 void	ft_exit(t_game_core *game)
 {
-	mlx_terminate(game->id);
-	ft_free(game->map);
-	ft_free(game->map_cpy);
+	if (game->id)
+		mlx_terminate(game->id);
+	if (game->map)
+		ft_free(game->map);
+	if (game->map_cpy)
+		ft_free(game->map_cpy);
 	free(game);
 	exit(EXIT_FAILURE);
 }

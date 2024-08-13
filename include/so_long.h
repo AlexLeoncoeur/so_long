@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/12 16:38:25 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:25:37 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_game_core
 {
 	mlx_t		*id;
+	bool		exit;
 	char		**map;
 	char		**map_cpy;
 	int			c;
@@ -43,7 +44,7 @@ typedef struct s_game_core
 }	t_game_core;
 
 /*-------------------- so_long --------------------*/
-void			ft_prepare_game_core(mlx_t *id, t_game_core *game);
+void			ft_prepare_game_core(t_game_core *game);
 void			ft_print_moves(t_game_core *game);
 void			ft_load_img(t_game_core *game);
 void			ft_win_game(t_game_core *game);

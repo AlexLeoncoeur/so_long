@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:49:17 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/12 17:05:11 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:40:32 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,14 @@ static int	ft_flood_fill(int i, int j, t_game_core *game)
 		return (EXIT_FAILURE);
 	else if (game->map_cpy[i][j] == 'C')
 		game->c++;
+	else if (game->map_cpy[i][j] == 'E')
+		game->exit = 1;
 	game->map_cpy[i][j] = 'F';
 	ft_flood_fill(i, j + 1, game);
 	ft_flood_fill(i, j - 1, game);
 	ft_flood_fill(i + 1, j, game);
 	ft_flood_fill(i - 1, j, game);
-	if (game->c == game->vp)
+	if (game->c == game->vp && game->exit == 1)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }

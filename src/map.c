@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/12 16:31:15 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:26:10 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ void	ft_read_map(t_game_core *game, char *map)
 	char	*line;
 	int		fd;
 
+	game->map = NULL;
+	game->map_cpy = NULL;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
+	if (!line)
+		ft_puterrorstr("Error: Empty map\n", game);
 	while (line)
 	{
 		full_map = ft_strjoin_free(full_map, line);
