@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:04:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/13 15:41:52 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:01:58 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_game_core
 	bool		exit;
 	char		**map;
 	char		**map_cpy;
+	int			pc_number;
 	int			c;
 	int			vp;
 	int			pc_y;
@@ -76,6 +77,7 @@ void			ft_check_map_error(t_game_core *game);
 void			ft_flood_prep(t_game_core *game);
 
 /*-------------------- Miscelaneous --------------------*/
+int				ft_open_file(t_game_core *game, char *map);
 void			ft_free_read_map(char *line, char *full_map, t_game_core *game);
 void			ft_set_game_core(t_game_core *g);
 size_t			ft_len_line(char *str);

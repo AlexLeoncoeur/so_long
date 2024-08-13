@@ -6,7 +6,7 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:35:33 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/13 15:43:33 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:03:56 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_read_map(t_game_core *game, char *map)
 	int		fd;
 
 	full_map = NULL;
-	fd = open(map, O_RDONLY);
+	fd = ft_open_file(game, map);
 	line = get_next_line(fd);
 	if (!line)
 		ft_puterrorstr("Error: Empty map\n", game);
@@ -54,6 +54,7 @@ void	ft_check_map(t_game_core *game, char c)
 	int	i;
 	int	j;
 
+	game->pc_number = 0;
 	i = 0;
 	while (game->map[i])
 	{
@@ -64,13 +65,15 @@ void	ft_check_map(t_game_core *game, char c)
 			{
 				game->pc_y = i;
 				game->pc_x = j;
-				return ;
+				game->pc_number++;
 			}
 			j++;
 		}
 		i++;
 	}
-	ft_puterrorstr("Error: Could not find player\n", game);
+	if (game->pc_number == 1)
+		return ;
+	ft_puterrorstr("Error: Wrong number of player component\n", game);
 }
 
 void	ft_check_vp(t_game_core *game)

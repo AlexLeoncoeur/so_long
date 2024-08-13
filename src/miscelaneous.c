@@ -6,11 +6,21 @@
 /*   By: aarenas- <aarenas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:13:44 by aarenas-          #+#    #+#             */
-/*   Updated: 2024/08/13 15:41:39 by aarenas-         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:06:08 by aarenas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int	ft_open_file(t_game_core *game, char *map)
+{
+	int	fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		ft_puterrorstr("Error: Failed to open map file\n", game);
+	return (fd);
+}
 
 size_t	ft_len_line(char *str)
 {
