@@ -1,4 +1,4 @@
-# 🕹️ Proyecto So_Long - 42 Madrid
+# 🕹️ Proyecto So_Long
 
 Este README está diseñado para ayudarte a entender lo que aprenderás al desarrollar el proyecto **So_Long** en 42. Este proyecto es un paso importante para familiarizarte con el desarrollo de juegos 2D y con la programación en C, y te permitirá aplicar una gran variedad de conceptos clave.
 
